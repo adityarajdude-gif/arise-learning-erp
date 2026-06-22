@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance | Arise Learning ERP</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/student.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>ARISE</h2>
+            <span>LEARNING ERP</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="/student/dashboard">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/student/profile">
+                    <i class="fas fa-user"></i>
+                    My Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="/student/fees">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Fee Records
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="/student/attendance">
+                    <i class="fas fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <div class="topbar">
+
+            <div>
+                <h1>Attendance Records</h1>
+                <p>Track your attendance history</p>
+            </div>
+
+        </div>
+
+        <!-- Summary Card -->
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+
+            <div class="summary-info">
+                <h2>Attendance Overview</h2>
+                <p>
+                    Your attendance records are shown below.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Attendance Table -->
+        <div class="table-card">
+
+            <h2>
+                <i class="fas fa-clipboard-check"></i>
+                Attendance History
+            </h2>
+
+            {% if attendance %}
+
+            <table class="attendance-table">
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for item in attendance %}
+
+                    <tr>
+
+                        <td>{{ item.id }}</td>
+
+                        <td>{{ item.date }}</td>
+
+                        <td>
+
+                            {% if item.status == "Present" %}
+
+                                <span class="status-present">
+                                    Present
+                                </span>
+
+                            {% elif item.status == "Absent" %}
+
+                                <span class="status-absent">
+                                    Absent
+                                </span>
+
+                            {% else %}
+
+                                <span class="status-late">
+                                    {{ item.status }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="empty-state">
+
+                <i class="fas fa-calendar-times"></i>
+
+                <h3>No Attendance Records Found</h3>
+
+                <p>
+                    Attendance entries will appear here once added by the administrator.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

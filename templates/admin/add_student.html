@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student | Arise Learning ERP</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>ARISE</h2>
+            <span>LEARNING ERP</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="/admin/dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/students">
+                    <i class="fas fa-user-graduate"></i>
+                    Students
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="/admin/add-student">
+                    <i class="fas fa-user-plus"></i>
+                    Add Student
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/fees">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Fee Management
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="page-header">
+
+            <h1>
+                <i class="fas fa-user-plus"></i>
+                Add New Student
+            </h1>
+
+            <a href="/admin/students" class="btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                Back to Students
+            </a>
+
+        </div>
+
+        <div class="form-card">
+
+            <form method="POST">
+
+                <div class="form-grid">
+
+                    <!-- Student Name -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-user"></i>
+                            Student Name
+                        </label>
+
+                        <input type="text"
+                               name="name"
+                               placeholder="Enter Student Name"
+                               required>
+                    </div>
+
+                    <!-- Father Name -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-user-friends"></i>
+                            Father Name
+                        </label>
+
+                        <input type="text"
+                               name="father_name"
+                               placeholder="Enter Father Name"
+                               required>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-phone"></i>
+                            Mobile Number
+                        </label>
+
+                        <input type="text"
+                               name="mobile"
+                               maxlength="10"
+                               placeholder="9876543210"
+                               required>
+                    </div>
+
+                    <!-- Course -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-book"></i>
+                            Course
+                        </label>
+
+                        <select name="course" required>
+
+                            <option value="">
+                                Select Course
+                            </option>
+
+                            <option value="Python Full Stack">
+                                Python Full Stack
+                            </option>
+
+                            <option value="Java Full Stack">
+                                Java Full Stack
+                            </option>
+
+                            <option value="Web Development">
+                                Web Development
+                            </option>
+
+                            <option value="Data Science">
+                                Data Science
+                            </option>
+
+                            <option value="Computer Basics">
+                                Computer Basics
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <!-- Fees -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-rupee-sign"></i>
+                            Course Fees
+                        </label>
+
+                        <input type="number"
+                               name="fees"
+                               placeholder="Enter Total Fees"
+                               required>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-id-card"></i>
+                            Username
+                        </label>
+
+                        <input type="text"
+                               name="username"
+                               placeholder="Student Login Username"
+                               required>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-lock"></i>
+                            Password
+                        </label>
+
+                        <input type="password"
+                               name="password"
+                               placeholder="Student Login Password"
+                               required>
+                    </div>
+
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+
+                    <label>
+                        <i class="fas fa-map-marker-alt"></i>
+                        Address
+                    </label>
+
+                    <textarea
+                        name="address"
+                        rows="4"
+                        placeholder="Enter Student Address"
+                        required>
+                    </textarea>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions">
+
+                    <button type="reset"
+                            class="btn-reset">
+
+                        <i class="fas fa-redo"></i>
+                        Reset
+
+                    </button>
+
+                    <button type="submit"
+                            class="btn-save">
+
+                        <i class="fas fa-save"></i>
+                        Save Student
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

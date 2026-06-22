@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student | Arise Learning ERP</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>ARISE</h2>
+            <span>LEARNING ERP</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="/admin/dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="/admin/students">
+                    <i class="fas fa-user-graduate"></i>
+                    Students
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/add-student">
+                    <i class="fas fa-user-plus"></i>
+                    Add Student
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/fees">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Fee Management
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="page-header">
+
+            <h1>
+                <i class="fas fa-user-edit"></i>
+                Edit Student
+            </h1>
+
+            <a href="/admin/students" class="btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </a>
+
+        </div>
+
+        <div class="form-card">
+
+            <form method="POST">
+
+                <div class="form-grid">
+
+                    <!-- Student Name -->
+                    <div class="form-group">
+
+                        <label>Student Name</label>
+
+                        <input type="text"
+                               name="name"
+                               value="{{ student.name }}"
+                               required>
+
+                    </div>
+
+                    <!-- Father Name -->
+                    <div class="form-group">
+
+                        <label>Father Name</label>
+
+                        <input type="text"
+                               name="father_name"
+                               value="{{ student.father_name }}"
+                               required>
+
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="form-group">
+
+                        <label>Mobile Number</label>
+
+                        <input type="text"
+                               name="mobile"
+                               value="{{ student.mobile }}"
+                               required>
+
+                    </div>
+
+                    <!-- Course -->
+                    <div class="form-group">
+
+                        <label>Course</label>
+
+                        <select name="course" required>
+
+                            <option value="Python Full Stack"
+                            {% if student.course=="Python Full Stack" %}
+                            selected
+                            {% endif %}>
+                                Python Full Stack
+                            </option>
+
+                            <option value="Java Full Stack"
+                            {% if student.course=="Java Full Stack" %}
+                            selected
+                            {% endif %}>
+                                Java Full Stack
+                            </option>
+
+                            <option value="Web Development"
+                            {% if student.course=="Web Development" %}
+                            selected
+                            {% endif %}>
+                                Web Development
+                            </option>
+
+                            <option value="Data Science"
+                            {% if student.course=="Data Science" %}
+                            selected
+                            {% endif %}>
+                                Data Science
+                            </option>
+
+                            <option value="Computer Basics"
+                            {% if student.course=="Computer Basics" %}
+                            selected
+                            {% endif %}>
+                                Computer Basics
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Fees -->
+                    <div class="form-group">
+
+                        <label>Total Fees</label>
+
+                        <input type="number"
+                               name="fees"
+                               value="{{ student.fees }}"
+                               required>
+
+                    </div>
+
+                    <!-- Username -->
+                    <div class="form-group">
+
+                        <label>Username</label>
+
+                        <input type="text"
+                               value="{{ student.username }}"
+                               readonly>
+
+                    </div>
+
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+
+                    <label>Address</label>
+
+                    <textarea name="address"
+                              rows="4"
+                              required>{{ student.address }}</textarea>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions">
+
+                    <a href="/admin/students"
+                       class="btn-reset">
+                        Cancel
+                    </a>
+
+                    <button type="submit"
+                            class="btn-save">
+
+                        <i class="fas fa-save"></i>
+                        Update Student
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- Student Information -->
+        <div class="info-card">
+
+            <h3>
+                <i class="fas fa-info-circle"></i>
+                Student Information
+            </h3>
+
+            <table class="info-table">
+
+                <tr>
+                    <th>Student ID</th>
+                    <td>{{ student.id }}</td>
+                </tr>
+
+                <tr>
+                    <th>Username</th>
+                    <td>{{ student.username }}</td>
+                </tr>
+
+                <tr>
+                    <th>Course</th>
+                    <td>{{ student.course }}</td>
+                </tr>
+
+                <tr>
+                    <th>Fees</th>
+                    <td>₹ {{ student.fees }}</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

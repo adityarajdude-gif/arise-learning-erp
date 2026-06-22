@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Arise Learning ERP</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/student.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>ARISE</h2>
+            <span>LEARNING ERP</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="/student/dashboard">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="/student/profile">
+                    <i class="fas fa-user"></i>
+                    My Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="/student/fees">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Fee Records
+                </a>
+            </li>
+
+            <li>
+                <a href="/student/attendance">
+                    <i class="fas fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <div class="topbar">
+
+            <div>
+                <h1>My Profile</h1>
+                <p>View your complete profile information</p>
+            </div>
+
+        </div>
+
+        <!-- Profile Card -->
+        <div class="profile-header">
+
+            <div class="profile-avatar">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+
+            <div class="profile-info">
+                <h2>{{ student.name }}</h2>
+                <p>{{ student.course }}</p>
+                <span class="student-id">
+                    Student ID : {{ student.id }}
+                </span>
+            </div>
+
+        </div>
+
+        <!-- Personal Details -->
+        <div class="section">
+
+            <h2>
+                <i class="fas fa-user-circle"></i>
+                Personal Information
+            </h2>
+
+            <div class="info-card">
+
+                <table class="info-table">
+
+                    <tr>
+                        <th>Student Name</th>
+                        <td>{{ student.name }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Father Name</th>
+                        <td>{{ student.father_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Mobile Number</th>
+                        <td>{{ student.mobile }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ student.address }}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Course Details -->
+        <div class="section">
+
+            <h2>
+                <i class="fas fa-book-open"></i>
+                Course Information
+            </h2>
+
+            <div class="info-card">
+
+                <table class="info-table">
+
+                    <tr>
+                        <th>Course Name</th>
+                        <td>{{ student.course }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Total Fees</th>
+                        <td>₹ {{ student.fees }}</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Login Details -->
+        <div class="section">
+
+            <h2>
+                <i class="fas fa-lock"></i>
+                Account Information
+            </h2>
+
+            <div class="info-card">
+
+                <table class="info-table">
+
+                    <tr>
+                        <th>Username</th>
+                        <td>{{ student.username }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Student ID</th>
+                        <td>{{ student.id }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Portal Access</th>
+                        <td>
+                            <span class="status-active">
+                                Active
+                            </span>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Management | Arise Learning ERP</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>ARISE</h2>
+            <span>LEARNING ERP</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="/admin/dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="/admin/students">
+                    <i class="fas fa-user-graduate"></i>
+                    Students
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/add-student">
+                    <i class="fas fa-user-plus"></i>
+                    Add Student
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/fees">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Fee Management
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <div class="topbar">
+
+            <div>
+                <h1>Students Management</h1>
+                <p>Manage all registered students</p>
+            </div>
+
+            <a href="/admin/add-student" class="btn-primary">
+                <i class="fas fa-user-plus"></i>
+                Add Student
+            </a>
+
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                <div class="success-alert">
+                    {{ msg }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Search Box -->
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="studentSearch"
+                placeholder="Search student by name, mobile, course..."
+                onkeyup="searchStudents()">
+
+            <i class="fas fa-search"></i>
+
+        </div>
+
+        <!-- Student Table -->
+        <div class="table-container">
+
+            <table id="studentTable">
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Father Name</th>
+                        <th>Mobile</th>
+                        <th>Course</th>
+                        <th>Fees</th>
+                        <th>Username</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for student in students %}
+
+                    <tr>
+
+                        <td>{{ student.id }}</td>
+
+                        <td>{{ student.name }}</td>
+
+                        <td>{{ student.father_name }}</td>
+
+                        <td>{{ student.mobile }}</td>
+
+                        <td>{{ student.course }}</td>
+
+                        <td>₹ {{ student.fees }}</td>
+
+                        <td>{{ student.username }}</td>
+
+                        <td>
+
+                            <a href="/admin/edit-student/{{ student.id }}"
+                               class="btn-edit">
+
+                                <i class="fas fa-edit"></i>
+                                Edit
+
+                            </a>
+
+                            <a href="/admin/delete-student/{{ student.id }}"
+                               class="btn-delete"
+                               onclick="return confirm('Delete this student?')">
+
+                                <i class="fas fa-trash"></i>
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+function searchStudents() {
+
+    let input = document.getElementById("studentSearch");
+    let filter = input.value.toUpperCase();
+
+    let table = document.getElementById("studentTable");
+    let tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+
+        let rowText = tr[i].textContent || tr[i].innerText;
+
+        if (rowText.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>

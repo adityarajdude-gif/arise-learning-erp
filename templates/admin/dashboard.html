@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Arise Learning ERP</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>ARISE</h2>
+            <span>LEARNING ERP</span>
+        </div>
+
+        <ul class="menu">
+
+            <li class="active">
+                <a href="/admin/dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/students">
+                    <i class="fas fa-user-graduate"></i>
+                    Students
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/add-student">
+                    <i class="fas fa-user-plus"></i>
+                    Add Student
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/fees">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Fee Management
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fas fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fas fa-bullhorn"></i>
+                    Notices
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Header -->
+        <header class="topbar">
+
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Welcome, {{ session['admin'] }}</p>
+            </div>
+
+            <div class="date-box">
+                <i class="fas fa-calendar-alt"></i>
+                Arise Learning ERP
+            </div>
+
+        </header>
+
+        <!-- Dashboard Cards -->
+        <section class="cards">
+
+            <div class="card">
+
+                <div class="card-icon blue">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+
+                <div class="card-info">
+                    <h3>{{ total_students }}</h3>
+                    <p>Total Students</p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-icon green">
+                    <i class="fas fa-wallet"></i>
+                </div>
+
+                <div class="card-info">
+                    <h3>₹ {{ total_fees }}</h3>
+                    <p>Total Fees Collected</p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-icon orange">
+                    <i class="fas fa-book-open"></i>
+                </div>
+
+                <div class="card-info">
+                    <h3>5</h3>
+                    <p>Courses</p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-icon red">
+                    <i class="fas fa-bell"></i>
+                </div>
+
+                <div class="card-info">
+                    <h3>3</h3>
+                    <p>Active Notices</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="dashboard-section">
+
+            <h2>Quick Actions</h2>
+
+            <div class="action-grid">
+
+                <a href="/admin/add-student" class="action-box">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Add Student</span>
+                </a>
+
+                <a href="/admin/students" class="action-box">
+                    <i class="fas fa-users"></i>
+                    <span>Manage Students</span>
+                </a>
+
+                <a href="/admin/fees" class="action-box">
+                    <i class="fas fa-money-check-alt"></i>
+                    <span>Collect Fees</span>
+                </a>
+
+                <a href="#" class="action-box">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>Attendance</span>
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- Information Section -->
+        <section class="dashboard-section">
+
+            <h2>Institute Overview</h2>
+
+            <div class="overview-box">
+
+                <table>
+
+                    <tr>
+                        <th>Institute Name</th>
+                        <td>Arise Learning Coaching Institute</td>
+                    </tr>
+
+                    <tr>
+                        <th>System</th>
+                        <td>Coaching Management ERP</td>
+                    </tr>
+
+                    <tr>
+                        <th>Database</th>
+                        <td>SQLite</td>
+                    </tr>
+
+                    <tr>
+                        <th>Backend</th>
+                        <td>Python Flask</td>
+                    </tr>
+
+                    <tr>
+                        <th>Status</th>
+                        <td>
+                            <span class="status-active">
+                                Running
+                            </span>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

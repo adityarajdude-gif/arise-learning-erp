@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Records | Arise Learning ERP</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/student.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>ARISE</h2>
+            <span>LEARNING ERP</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="/student/dashboard">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/student/profile">
+                    <i class="fas fa-user"></i>
+                    My Profile
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="/student/fees">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Fee Records
+                </a>
+            </li>
+
+            <li>
+                <a href="/student/attendance">
+                    <i class="fas fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <div class="topbar">
+
+            <div>
+                <h1>Fee Records</h1>
+                <p>View your fee payment history</p>
+            </div>
+
+        </div>
+
+        <!-- Summary Card -->
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                <i class="fas fa-wallet"></i>
+            </div>
+
+            <div class="summary-info">
+                <h2>Fee Payment History</h2>
+                <p>
+                    All payments made by you are listed below.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Fee Records Table -->
+        <div class="table-card">
+
+            <h2>
+                <i class="fas fa-history"></i>
+                Payment Records
+            </h2>
+
+            {% if records %}
+
+            <table class="fee-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Receipt No.</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Remarks</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for fee in records %}
+
+                    <tr>
+
+                        <td>
+                            ARISE-{{ fee.id }}
+                        </td>
+
+                        <td>
+                            ₹ {{ fee.amount }}
+                        </td>
+
+                        <td>
+                            {{ fee.date }}
+                        </td>
+
+                        <td>
+                            {{ fee.remarks }}
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="empty-state">
+
+                <i class="fas fa-file-invoice-dollar"></i>
+
+                <h3>No Fee Records Found</h3>
+
+                <p>
+                    Your fee payment history will appear here.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

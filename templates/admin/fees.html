@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Management | Arise Learning ERP</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>ARISE</h2>
+            <span>LEARNING ERP</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="/admin/dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/students">
+                    <i class="fas fa-user-graduate"></i>
+                    Students
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="/admin/fees">
+                    <i class="fas fa-money-bill-wave"></i>
+                    Fee Management
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <div class="page-header">
+
+            <h1>
+                <i class="fas fa-money-check-alt"></i>
+                Fee Management
+            </h1>
+
+        </div>
+
+        <!-- Flash Message -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                <div class="success-alert">
+                    {{ msg }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Add Fee Form -->
+        <div class="form-card">
+
+            <h2>
+                <i class="fas fa-plus-circle"></i>
+                Add Fee Payment
+            </h2>
+
+            <form method="POST">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Select Student</label>
+
+                        <select name="student_id" required>
+
+                            <option value="">
+                                Select Student
+                            </option>
+
+                            {% for student in students %}
+
+                            <option value="{{ student.id }}">
+                                {{ student.name }} -
+                                {{ student.course }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Fee Amount (₹)</label>
+
+                        <input type="number"
+                               name="amount"
+                               min="1"
+                               placeholder="Enter Amount"
+                               required>
+
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+
+                    <button type="submit"
+                            class="btn-save">
+
+                        <i class="fas fa-save"></i>
+                        Save Payment
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- Search -->
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="feeSearch"
+                placeholder="Search Student Name..."
+                onkeyup="searchFees()">
+
+            <i class="fas fa-search"></i>
+
+        </div>
+
+        <!-- Fee History -->
+        <div class="table-container">
+
+            <h2>
+                <i class="fas fa-history"></i>
+                Fee Payment History
+            </h2>
+
+            <table id="feeTable">
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Student Name</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Remarks</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for fee in fee_records %}
+
+                    <tr>
+
+                        <td>{{ fee.id }}</td>
+
+                        <td>{{ fee.name }}</td>
+
+                        <td>
+                            ₹ {{ fee.amount }}
+                        </td>
+
+                        <td>{{ fee.date }}</td>
+
+                        <td>{{ fee.remarks }}</td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+function searchFees() {
+
+    let input = document.getElementById("feeSearch");
+    let filter = input.value.toUpperCase();
+
+    let table = document.getElementById("feeTable");
+    let rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+
+        let text = rows[i].textContent || rows[i].innerText;
+
+        if (text.toUpperCase().indexOf(filter) > -1) {
+            rows[i].style.display = "";
+        }
+        else {
+            rows[i].style.display = "none";
+        }
+
+    }
+}
+
+</script>
+
+</body>
+</html>
